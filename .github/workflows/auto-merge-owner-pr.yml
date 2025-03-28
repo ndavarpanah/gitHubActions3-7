@@ -13,7 +13,7 @@ jobs:
     
     - uses: actions/setup-python@v1
       with:
-        python-version: 3.8
+        python-version: 3.13.2
     
     - name: flake8 and pylint
       run: |
@@ -22,7 +22,8 @@ jobs:
         pylint --errors-only --disable=C0301 --disable=C0326 *.py tests/*.py
     
     - name: unit test
-      run: python -m unittest --verbose --failfast
+      #run: python -m unittest --verbose --failfast
+      run: python -m unittest discover -s tests -p "test_*.py" --verbose --failfast
   
   merge:
     if: github.actor == 'automate6500' || github.actor == 'octocat' || github.actor == 'Peffyd'
