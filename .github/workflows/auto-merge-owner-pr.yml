@@ -21,8 +21,11 @@ jobs:
         flake8 --ignore=E501,E231 *.py tests/*.py
         pylint --errors-only --disable=C0301 --disable=C0326 *.py tests/*.py
     
+    #- name: unit test
+      #run: python -m unittest --verbose --failfast
     - name: unit test
-      run: python -m unittest --verbose --failfast
+      run: python -m unittest discover -s tests -p "test_*.py" --verbose --failfast
+
   
   merge:
     if: github.actor == 'automate6500' || github.actor == 'octocat' || github.actor == 'Peffyd'
